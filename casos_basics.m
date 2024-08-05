@@ -87,5 +87,18 @@ res3 = f(q);
 A = casos.PS.sym('a', [2,2]);
 B = casos.PS.sym('b', [2,2]);
 f = casos.Function('f', {A, B}, {A*B})
+res4 = f([1 1;1 1], [3 2;1 0]);
 
-res4= f([1 1;1 1], [3 2;1 0])
+% input matrix and vector
+b = casos.PS.sym('b', 2)
+f = casos.Function('f', {A,b}, {A*b})
+f(A,b)
+
+% output matrix of polynomials
+x = casos.Indeterminates('x', 3);
+c = casos.PS.sym('c', 4);
+matrixPolynomial = [
+    c(1)*x(1)^3, c(2)*x(3);
+    c(1)*x(1)^4 - 3, c(4)+c(2)*x(2)^3];
+f = casos.Function('f', {c}, {matrixPolynomial});
+res5 = f([1 2 3 4])
