@@ -102,3 +102,16 @@ matrixPolynomial = [
     c(1)*x(1)^4 - 3, c(4)+c(2)*x(2)^3];
 f = casos.Function('f', {c}, {matrixPolynomial});
 res5 = f([1 2 3 4])
+
+% output two polynomial matrices
+x = casos.Indeterminates('x', 3);
+c = casos.PS.sym('c', 4);
+matrixPolynomial1 = [
+    c(1)*x(1)^3, c(2)*x(3);
+    c(1)*x(1)^4 - 3, c(4)+c(2)*x(2)^3];
+matrixPolynomial2 = [
+    c(1), c(2);
+    c(3), c(4)];
+
+f = casos.Function('f', {c}, {matrixPolynomial1, matrixPolynomial2});
+[res5, res6] = f([1 2 3 4])
