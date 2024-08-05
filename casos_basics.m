@@ -22,6 +22,10 @@ nByNOnes = casos.PD.ones(4)
 % and identity
 identityMatrix = casos.PS.eye(4)
 
+% some random constant polynomial
+x = casos.Indeterminates('x')
+p = casos.PD(monomials(x, 0:4), randn(5,1))
+
 % (---- the above also works with casos.PS ----)
 
 %% Indeterminates
@@ -115,3 +119,13 @@ matrixPolynomial2 = [
 
 f = casos.Function('f', {c}, {matrixPolynomial1, matrixPolynomial2});
 [res5, res6] = f([1 2 3 4])
+
+f(casos.PS.sym('d', 4))
+
+%% polynomial.to_function
+% we can turn symbolic polynomials into functions like this
+x = casos.Indeterminates('x');
+p1 = casos.PD(monomials(x, 0:4), randn(5, 1)).to_function;
+xdata = -5:0.1:5;
+ydata = full(p1(xdata));
+plot(xdata, ydata);
